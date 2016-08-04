@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Header from './components/Header'
+import Button from './components/Button'
 import { validateEmail, getErrorMsg, addClass, removeClass } from './utils'
 import Input from './components/Input'
 import styles from './App.css'; // eslint-disable-line
@@ -75,17 +76,24 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault()
     const { email, name, emailValid } = this.state
+
+    if (!email) {
+      // set error state
+      this.shakeInput('email')
+      return false;
+    }
+
     if (!emailValid) {
       // set error state
       this.shakeInput('email')
       return false;
     }
 
-    if (!name) {
-      // set error state
-      this.shakeInput('name')
-      return false;
-    }
+    // if (!name) {
+    //   // set error state
+    //   this.shakeInput('name')
+    //   return false;
+    // }
 
     var data = {
        "email": email,
@@ -100,10 +108,10 @@ class App extends Component {
       },
     }).then(function(response) {
         console.log(response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
+        // console.log(response.status);
+        // console.log(response.statusText);
+        // console.log(response.headers);
+        // console.log(response.config);
         if(response && response.data && response.data.created) {
           console.log('creation succeed')
           that.setState({
@@ -111,7 +119,6 @@ class App extends Component {
           })
         } else {
           console.log('failed creation')
-
           that.setState({
             error: 'alreadyEntered'
           })
@@ -133,7 +140,7 @@ class App extends Component {
 
           {this.renderErrorOrSuccess()}
 
-          <span ref="name">
+          {/*<span ref="name">
             <Input
               id='name'
               onChange={this.handleInputChange}
@@ -141,7 +148,7 @@ class App extends Component {
               type={'text'}
               label={'Name'}
             />
-          </span>
+          </span>*/}
 
           <span ref="email">
             <Input
@@ -155,11 +162,9 @@ class App extends Component {
             />
           </span>
 
-          <button
-            onClick={this.handleSubmit}
-            className="btn btn-3 btn-3e icon-arrow-right">
+          <Button onClick={this.handleSubmit}>
             Sign up
-          </button>
+          </Button>
 
         </div>
       </div>

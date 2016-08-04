@@ -1,0 +1,99 @@
+
+.btn {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 25px 80px;
+  display: inline-block;
+  margin: 15px 30px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  transition: all 0.3s;
+}
+.btn-3 {
+    color: #fff;
+    background: transparent;
+    border: 2px solid #aaa;
+}
+.btn-3e {
+    padding: 18px 100px 18px 60px;
+    overflow: hidden;
+}
+.btn-3:hover {
+    border: 2px solid #FFE403;
+}
+.btn-3e:hover:after {
+    width: 120%;
+}
+
+.btn-3e:hover:before {
+    color: #FFE403;
+    //content: "😀";
+    transition: all 0.3s;
+}
+
+.btn-3:before {
+    position: absolute;
+    height: 100%;
+    width: 60px;
+}
+.btn-3e:before {
+    right: 0;
+    top: 0;
+    z-index: 3;
+    width: 70px;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
+.icon-arrow-right:before {
+    content: ">";
+}
+
+.btn:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.bg {
+  top: 0px;
+  right: -50%;
+  position: absolute;
+  transition: all 0.3s;
+  width: 75px;
+  background: #202020;
+  height: 400%;
+  margin: -5px 0 0 -5px;
+  transform-origin: 0 0;
+  transform: rotate(-10deg);
+
+  z-index: 2;
+}
+
+.btn-3e:hover .bg {
+   transform-origin: 0 0;
+   right: 0;
+}
+
+.btn-3e:after {
+    width: 75px;
+    height: 400%;
+    background: rgba(255,255,255,0.1);
+    z-index: 1;
+    right: 0;
+    top: 0;
+    margin: -5px 0 0 -5px;
+    transform-origin: 0 0;
+    transform: rotate(-10deg);
+}

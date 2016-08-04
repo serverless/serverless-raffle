@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router'
 import axios from 'axios'
+import Button from './components/Button'
 import Header from './components/Header'
-import styles from './Raffle.css'
+import styles from './Raffle.css' // eslint-disable-line
 
 export default class Raffle extends React.Component {
   constructor (props, context) {
@@ -49,9 +50,9 @@ export default class Raffle extends React.Component {
           {headline}
         </h1>
 
-        <button className="btn btn-3 btn-3e icon-arrow-right" onClick={this.doRaffle}>
+        <Button onClick={this.doRaffle}>
           {buttonText}
-        </button>
+        </Button>
       </div>
     );
   }
