@@ -1,0 +1,103 @@
+
+
+.input {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin: .8em;
+    width: calc(100% - 2em);
+    vertical-align: top;
+}
+.field {
+    position: relative;
+    display: block;
+    float: right;
+    padding: 0.8em;
+    width: 60%;
+    border: none;
+    border-radius: 0;
+    background: #f0f0f0;
+    color: #aaa;
+    font-weight: 400;
+    font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-appearance: none;
+}
+.field--ghost {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid #aaa;
+    -webkit-transition: background-color 0.25s, border-color 0.25s;
+    transition: background-color 0.25s, border-color 0.25s;
+}
+.label {
+    display: inline-block;
+    float: right;
+    padding: 0 1em;
+    width: 40%;
+    color: #f1ecec;
+    font-weight: bold;
+    font-size: 70.25%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+}
+.label--ghost {
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    bottom: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    padding: 0 1.25em;
+    transform: translate3d(0, 3em, 0);
+    transition: transform 0.25s;
+    transition-timing-function: ease-in-out;
+}
+.label-content {
+    position: relative;
+    display: block;
+    padding: 1.6em 0;
+    width: 100%;
+}
+.label-content--ghost {
+    color: #f1ecec;
+    padding: 0.25em 0;
+    transition: transform 0.25s;
+    transition-timing-function: ease-in-out;
+}
+.label-content--ghost::after {
+    content: attr(data-content);
+    position: absolute;
+    font-weight: 800;
+    bottom: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    color: #FFE403;
+    padding: 0.25em 0;
+
+    letter-spacing: 1px;
+    font-size: 0.85em;
+}
+
+.input--invalid .label-content--ghost::after {
+    color: #E55934;
+}
+
+.field:focus {
+    outline: none;
+}
+.field--ghost:focus + .label--ghost, .input--filled .label--ghost {
+    transform: translate3d(0, 0, 0);
+}
+.field--ghost:focus + .label--ghost .label-content--ghost, .input--filled .label-content--ghost {
+    transform: translate3d(0, 100%, 0);
+}
+.field--ghost:focus + .field--ghost, .input--filled .field--ghost {
+    background-color: transparent;
+    border-color: #FFE403;
+    color: #fff;
+}
+.input--invalid .field--ghost {
+    border-color: #e4e4e4;
+}
