@@ -135,7 +135,9 @@ class App extends Component {
           <div className='msg success' style={{display: showSuccess}}>
             You are entered into the raffle!
             <div>
-              <h2>Star serverless on github</h2>
+
+              <h2>Join the Serverless Community!</h2>
+
               <a className="github-button" href="https://github.com/serverless/serverless" data-icon="octicon-star" data-style="mega" data-count-href="/serverless/serverless/stargazers" data-count-api="/repos/serverless/serverless#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star serverless/serverless on GitHub">Star</a>
             </div>
           </div>

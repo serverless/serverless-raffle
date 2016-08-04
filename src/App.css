@@ -49,10 +49,9 @@ button, input, select, textarea {
   background: rgba(0,0,0,.9);
 }
 .success h2 {
-  font-size: 23px;
+  font-size: 18px;
   color: #fff;
 }
-
 
 @keyframes shake {
   from, 100% {
