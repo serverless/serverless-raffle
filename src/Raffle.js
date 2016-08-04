@@ -39,7 +39,7 @@ export default class Raffle extends React.Component {
   }
   render() {
     const { loading, winner } = this.state
-    const buttonText = (loading) ? "Calculating Winner..." : "do Raffle"
+    const buttonText = (loading) ? "Calculating Winner..." : "Spin the wheel of destiny"
     const headline = (winner) ? winner : "Raffle"
 
     return (
@@ -49,7 +49,7 @@ export default class Raffle extends React.Component {
           {headline}
         </h1>
 
-        <button onClick={this.doRaffle}>
+        <button className="btn btn-3 btn-3e icon-arrow-right" onClick={this.doRaffle}>
           {buttonText}
         </button>
       </div>
