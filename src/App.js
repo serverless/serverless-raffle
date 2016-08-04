@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.gif';
-import cloudLogo from './cloud-logo.png';
-import AWSLogo from './aws-logo.png';
 import axios from 'axios'
+import logo from './assets/logo.gif';
+import cloudLogo from './assets/cloud-logo.png';
+import AWSLogo from './assets/aws-logo.png';
 import { validateEmail, getErrorMsg, addClass, removeClass } from './utils'
 import Input from './components/Input'
-import './App.css';
+import styles from './App.css';
 
 class App extends Component {
   constructor (props, context) {
