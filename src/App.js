@@ -29,7 +29,6 @@ class App extends Component {
       [`${e.target.dataset.input}`]: value
     })
   }
-
   handleEmailBlur(e) {
     if(validateEmail(e.target.value) || e.target.value === "") {
       console.log('valid')
@@ -55,13 +54,6 @@ class App extends Component {
   }
   renderErrorOrSuccess() {
     const {error, entered} = this.state
-    if(entered) {
-      return (
-        <div className='msg success'>
-          Much success!
-        </div>
-      )
-    }
     if(error) {
       const errorMessage = getErrorMsg(error)
       return (
@@ -130,7 +122,7 @@ class App extends Component {
   render() {
     const { email, emailValid, entered } = this.state
     const emailIsValid = (!emailValid && email !== '') ? ' input--invalid' : ''
-
+    const showSuccess = (entered) ? "flex" : "none"
     return (
       <div >
 
@@ -139,6 +131,14 @@ class App extends Component {
         <div className={"App-form"}>
 
           {this.renderErrorOrSuccess()}
+
+          <div className='msg success' style={{display: showSuccess}}>
+            You are entered into the raffle!
+            <div>
+              <h2>Star serverless on github</h2>
+              <a className="github-button" href="https://github.com/serverless/serverless" data-icon="octicon-star" data-style="mega" data-count-href="/serverless/serverless/stargazers" data-count-api="/repos/serverless/serverless#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star serverless/serverless on GitHub">Star</a>
+            </div>
+          </div>
 
           {/*<span ref="name">
             <Input

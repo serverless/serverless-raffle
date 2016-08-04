@@ -38,14 +38,19 @@ button, input, select, textarea {
    color: #E55934;
 }
 .success {
-
+  padding: 20px;
   color: #3CC76A;
   height: 130%;
   z-index: 999;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: rgba(0,0,0,.9);
+}
+.success h2 {
+  font-size: 23px;
+  color: #fff;
 }
 
 
