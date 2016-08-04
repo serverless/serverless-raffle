@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import logo from './assets/logo.gif';
-import cloudLogo from './assets/cloud-logo.png';
-import AWSLogo from './assets/aws-logo.png';
+import Header from './components/Header'
 import { validateEmail, getErrorMsg, addClass, removeClass } from './utils'
 import Input from './components/Input'
-import styles from './App.css';
+import styles from './App.css'; // eslint-disable-line
 
 class App extends Component {
   constructor (props, context) {
@@ -13,7 +11,6 @@ class App extends Component {
     this.state = {
       email: '',
       emailValid: true,
-      password: '',
       error: null,
       entered: false
     }
@@ -124,22 +121,13 @@ class App extends Component {
 
   }
   render() {
-    const { email, emailValid, password, entered } = this.state
+    const { email, emailValid, entered } = this.state
     const emailIsValid = (!emailValid && email !== '') ? ' input--invalid' : ''
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <span className="App-logos">
-          <img src={cloudLogo} className="App-logo" alt="logo" />
-          <span className="plus">+</span>
-          <img src={logo} className="App-logo" alt="logo" />
-          </span>
-          <h2>
-            <img src={AWSLogo} className="App-logo-2" alt="logo" />
-            <span>Raffle!</span>
-          </h2>
-        </div>
+      <div >
+
+        <Header />
 
         <div className={"App-form"}>
 

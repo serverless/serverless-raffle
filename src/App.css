@@ -13,51 +13,7 @@ button, input, select, textarea {
 .App {
   text-align: center;
 }
-.App-logos {
-  display: flex;
 
-  justify-content: center;
-  align-items: center;
-}
-.App-logo {
-  height: 80px;
-  display: block;
-}
-.App-logo-2 {
-  height: 50px;
-  margin-right: 10px;
-}
-@media (max-width: 768px) {
-  .App-logos {
-    flex-direction: column;
-  }
-  .App-logo {
-    height: 70px;
-  }
-}
-.plus {
-  font-size: 30px;
-  display: inline-block;
-  flex-shrink: 1;
-  font-family: 'Open Sans',sans-serif;
-  font-style: normal;
-}
-
-.App-header {
-  background-color: #141414;
-  padding: 15px;
-  padding-top: 20px;
-  padding-bottom: 30px;
-  color: white;
-  font-family: Oswald,sans-serif;
-  font-style: italic;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-.App-header h2 {
-  font-size: 36px;
-  margin: 0px;
-}
 
 .App-intro {
   font-size: large;

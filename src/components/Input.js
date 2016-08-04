@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import styles from './Input.css'
+import styles from './Input.css' // eslint-disable-line
 
 export default function Input ({className, id, value, type, label, onChange, onBlur}) {
   const hasValue = (value) ? ' input--filled' : ''
@@ -24,6 +24,10 @@ export default function Input ({className, id, value, type, label, onChange, onB
       </span>
     </div>
   )
+}
+
+Input.propTypes = {
+  id: PropTypes.string
 }
 
 Input.defaultProps = {
