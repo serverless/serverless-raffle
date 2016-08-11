@@ -69,6 +69,12 @@ class App extends Component {
     e.preventDefault()
     const { email, name, emailValid } = this.state
 
+    if (!name) {
+      // set error state
+      this.shakeInput('name')
+      return false;
+    }
+
     if (!email) {
       // set error state
       this.shakeInput('email')
@@ -81,23 +87,15 @@ class App extends Component {
       return false;
     }
 
-    // if (!name) {
-    //   // set error state
-    //   this.shakeInput('name')
-    //   return false;
-    // }
-
     var data = {
        "email": email,
+       "name": name
     }
     var that = this
     axios({
       method: 'post',
       url: 'https://nwgsamd8v7.execute-api.us-east-1.amazonaws.com/dev/users',
       data: data,
-      headers: {
-       'Authorization': 'Bearer keyhIGB1sKiwklGzU',
-      },
     }).then(function(response) {
         console.log(response.data);
         // console.log(response.status);
@@ -116,6 +114,11 @@ class App extends Component {
           })
         }
 
+   }).catch(function (error) {
+      console.log(error);
+      that.setState({
+        error: 'serviceDown'
+      })
    });
 
   }
@@ -142,7 +145,7 @@ class App extends Component {
             </div>
           </div>
 
-          {/*<span ref="name">
+          <span ref="name">
             <Input
               id='name'
               onChange={this.handleInputChange}
@@ -150,7 +153,7 @@ class App extends Component {
               type={'text'}
               label={'Name'}
             />
-          </span>*/}
+          </span>
 
           <span ref="email">
             <Input

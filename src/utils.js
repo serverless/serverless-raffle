@@ -12,6 +12,8 @@ export function getErrorMsg (error) {
       return "Invalid Password.";
     case 'alreadyEntered':
       return 'This email address is already in the raffle';
+    case 'serviceDown':
+      return 'Looks like the service is down!';
     default:
       return null;
   }
