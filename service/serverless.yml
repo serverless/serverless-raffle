@@ -3,6 +3,7 @@ service: serverless-raffle
 provider:
   name: aws
   runtime: nodejs4.3
+  region: us-west-2
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -16,12 +17,14 @@ functions:
       - http:
           path: enter
           method: post
+          cors: true
   list:
     handler: handler.list
     events:
       - http:
           path: participants
           method: get
+          cors: true
 
 resources:
   Resources:

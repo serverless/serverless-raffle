@@ -15,8 +15,7 @@ export default class Header extends React.Component {
         <img src={logo} className="App-logo" alt="logo" />
         </span>
         <h2>
-          <img src={AWSLogo} className="App-logo-2" alt="logo" />
-          <span>Raffle!</span>
+          <span>RaffleTRON5000</span>
         </h2>
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import config from './_config'
 import Header from './components/Header'
 import Button from './components/Button'
 import { validateEmail, getErrorMsg, addClass, removeClass } from './utils'
@@ -94,7 +95,7 @@ class App extends Component {
     var that = this
     axios({
       method: 'post',
-      url: 'https://nwgsamd8v7.execute-api.us-east-1.amazonaws.com/dev/users',
+      url: config.API.ENTER,
       data: data,
     }).then(function(response) {
         console.log(response.data);
