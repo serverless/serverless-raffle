@@ -1,23 +1,16 @@
-'use strict'
-
-console.log('serverlessRaffle Loading function...')
-
 // Dependencies
-var AWS = require('aws-sdk')
-var crypto = require('crypto')
-var util = require('util')
-var config = require('./config.json')
-var dynamodb = new AWS.DynamoDB()
-
+const AWS = require('aws-sdk')
+const config = require('./config.json')
+const dynamodb = new AWS.DynamoDB()
+const addToMailchimp = require('./mailchimp')
 /**
  * Lambda: Create
  */
 module.exports.register = function(event, context, cb) {
 
   console.log('Event Received: ', event)
-
-  var name = event.body.name
-  var email = event.body.email
+  const name = JSON.parse(event.body).name
+  const email = JSON.parse(event.body).email
 
   saveUser(email, name, function(err, data) {
 
@@ -29,24 +22,45 @@ module.exports.register = function(event, context, cb) {
       }
     }
 
-    return cb(null, { created: true })
+    addToMailchimp(email, name, function(error, userAdded) {
+      if (error) {
+        return cb(error)
+      }
+      return cb(null, {
+        headers: {
+           // Required for CORS support to work
+          "Access-Control-Allow-Origin" : "*",
+          // Required for cookies, authorization headers with HTTPS
+          "Access-Control-Allow-Credentials" : true
+        },
+        statusCode: 200,
+        body: JSON.stringify({ created: userAdded })
+      })
+    })
   })
 }
 
 /**
  * Lambda: List
  */
-module.exports.list = function(event, context, cb) {
-
-  console.log('Event Received: ', event)
-
-  listUsers(function(err, data) {
+module.exports.raffle = function(event, context, cb) {
+  // console.log('Event Received: ', event)
+  listEntrants(function(err, data) {
     if (err) {
       console.log(err)
       return cb(err, null)
     }
     console.log("Users Listed: ", data)
-    return cb(null, data)
+    return cb(null, {
+      headers: {
+         // Required for CORS support to work
+        "Access-Control-Allow-Origin" : "*",
+        // Required for cookies, authorization headers with HTTPS
+        "Access-Control-Allow-Credentials" : true
+      },
+      statusCode: 200,
+      body: JSON.stringify({ data })
+    })
   })
 }
 
@@ -54,7 +68,8 @@ module.exports.list = function(event, context, cb) {
  * Save User
  */
 function saveUser(email, name, fn) {
-  var datetime = new Date().getTime().toString();
+  const dateTime = +new Date();
+  const timestamp = Math.floor(dateTime / 1000);
   dynamodb.putItem({
     TableName: config.DDB_TABLE,
     Item: {
@@ -62,7 +77,7 @@ function saveUser(email, name, fn) {
         S: email
       },
       date: {
-        N: datetime
+        N: timestamp.toString()
       },
       name: {
         S: name
@@ -81,9 +96,9 @@ function saveUser(email, name, fn) {
 }
 
 /**
- * List Users
+ * List Entrants
  */
-function listUsers(fn) {
+function listEntrants(fn) {
   dynamodb.scan({
     TableName: config.DDB_TABLE,
     Select: 'ALL_ATTRIBUTES'
@@ -96,3 +111,4 @@ function listUsers(fn) {
     }
   })
 }
+

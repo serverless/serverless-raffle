@@ -128,24 +128,17 @@ class App extends Component {
     const emailIsValid = (!emailValid && email !== '') ? ' input--invalid' : ''
     const showSuccess = (entered) ? "flex" : "none"
     return (
-      <div >
-
+      <div>
         <Header />
-
         <div className={"App-form"}>
-
           {this.renderErrorOrSuccess()}
-
           <div className='msg success' style={{display: showSuccess}}>
             You are entered into the raffle!
             <div>
-
               <h2>Join the Serverless Community!</h2>
-
               <a className="github-button" href="https://github.com/serverless/serverless" data-icon="octicon-star" data-style="mega" data-count-href="/serverless/serverless/stargazers" data-count-api="/repos/serverless/serverless#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star serverless/serverless on GitHub">Star</a>
             </div>
           </div>
-
           <span ref="name">
             <Input
               id='name'
@@ -155,7 +148,6 @@ class App extends Component {
               label={'Name'}
             />
           </span>
-
           <span ref="email">
             <Input
               id='email'
@@ -167,11 +159,9 @@ class App extends Component {
               label={'Email'}
             />
           </span>
-
           <Button onClick={this.handleSubmit}>
             Sign up
           </Button>
-
         </div>
       </div>
     );

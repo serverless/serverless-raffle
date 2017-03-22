@@ -1,14 +1,28 @@
-service: serverless-raffle
+service: meetup-raffle
 
 provider:
   name: aws
   runtime: nodejs4.3
   region: us-west-2
+  environment:
+    MAILCHIMP_API_KEY: ${file(./config.json):MAILCHIMP_API_KEY}
+    MAILCHIMP_REGION: ${file(./config.json):MAILCHIMP_REGION}
+    MAILCHIMP_LIST_ID: ${file(./config.json):MAILCHIMP_LIST_ID}
   iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:*
-      Resource: "*"
+  - Effect: Allow
+    Action:
+      - dynamodb:DescribeTable
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+      - dynamodb:BatchWriteItem
+    # Allow function to access only this database
+    Resource: [
+      "arn:aws:dynamodb:us-west-2:*:table/meetup-raffle-db"
+      ]
 
 functions:
   register:
@@ -18,20 +32,20 @@ functions:
           path: enter
           method: post
           cors: true
-  list:
-    handler: handler.list
+  raffle:
+    handler: handler.raffle
     events:
       - http:
-          path: participants
+          path: raffle
           method: get
           cors: true
 
 resources:
   Resources:
-    serverlessRaffle:
+    meetupRaffleDb:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: serverlessRaffle
+        TableName: ${file(./config.json):DDB_TABLE}
         AttributeDefinitions:
           - AttributeName: email
             AttributeType: S

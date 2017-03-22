@@ -1,0 +1,7 @@
+{
+  "DDB_TABLE": "meetup-raffle-db",
+  "region": "us-west-2",
+  "MAILCHIMP_REGION": "us11",
+  "MAILCHIMP_LIST_ID": "xxxxxxxx",
+  "MAILCHIMP_API_KEY": "xxxxx"
+}
